@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                    🎓 HTML LEARNING RESUME - MASTER CLASS                     ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  This file teaches you HTML by building a real resume website.               ║
+║  Every element is explained! Read the comments to learn.                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+📚 LESSON 1: DOCTYPE DECLARATION
+================================
+The very first line must ALWAYS be: <!DOCTYPE html>
+- This tells the browser "Hey, this is an HTML5 document!"
+- Without it, browsers enter "quirks mode" and things break
+- It's not an HTML tag, it's an instruction to the browser
+-->
+
+<!--
+📚 LESSON 2: THE <html> ELEMENT - THE ROOT
+==========================================
+Everything in your webpage goes INSIDE the <html> tags.
+- lang="en" tells browsers and search engines the page is in English
+- This helps screen readers pronounce words correctly
+- It's called an "attribute" (more on these later!)
+-->
+<html lang="en">
+
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              THE <head> SECTION                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  📚 LESSON 3: HEAD vs BODY                                                   ║
+║  ─────────────────────────────────────────────────────────────────────────── ║
+║  <head> = METADATA (invisible info about the page)                           ║
+║  <body> = CONTENT (what users actually see)                                  ║
+║                                                                              ║
+║  Think of it like a book:                                                    ║
+║  - <head> = ISBN, publisher info, copyright (not the story)                  ║
+║  - <body> = The actual story you read                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+
+<head>
+    <!--
+    📚 LESSON 4: META TAGS - Information About Your Page
+    ====================================================
+    Meta tags provide information to browsers and search engines.
+    They are "self-closing" - no </meta> needed!
+    -->
+
+    <!-- 
+    charset="UTF-8" enables ALL characters (emojis 😀, symbols €, accents é)
+    Without this, special characters might show as ??? or garbage
+    ALWAYS include this as the FIRST meta tag!
+    -->
+    <meta charset="UTF-8">
+
+    <!-- 
+    viewport meta tag = ESSENTIAL for mobile devices!
+    - width=device-width: page width = screen width (no tiny desktop site)
+    - initial-scale=1.0: no zoom when page loads
+    Without this, your site looks terrible on phones!
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 
+    description = what shows in Google search results 
+    Keep it under 160 characters for best display
+    -->
+    <meta name="description"
+        content="Professional resume of a creative developer passionate about building beautiful web experiences.">
+
+    <!--
+    📚 LESSON 5: THE <title> TAG
+    ============================
+    This appears in:
+    - Browser tab
+    - Search engine results
+    - Bookmarks
+    Keep it short and descriptive!
+    -->
+    <title>Sachidananda Swain| Web Developer Resume</title>
+
+    <!--
+    📚 LESSON 6: LINKING CSS (External Stylesheet)
+    ==============================================
+    <link> connects external files to your HTML.
+    
+    - rel="stylesheet" = relationship is "stylesheet"
+    - href="styles.css" = path to the CSS file
+    
+    Why external CSS is BETTER:
+    ✅ One CSS file can style multiple HTML pages
+    ✅ Browsers cache it (faster loading)
+    ✅ Clean separation of content (HTML) and design (CSS)
+    -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!--
+    📚 FAVICON - The icon in the browser tab
+    ===========================================
+    rel="icon" tells the browser this is the favicon
+    You can use .ico, .png, or .svg files
+    -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/primer/octicons/main/icons/person-24.svg">
+
+    <!--
+    Google Fonts - Free professional typography!
+    We're loading "Inter" - a clean, modern font perfect for resumes
+    The numbers (400;500;600;700) are font weights (thickness)
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                              THE <body> SECTION                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  📚 LESSON 7: BODY - Everything Users See                                    ║
+║  ─────────────────────────────────────────────────────────────────────────── ║
+║  All visible content goes here: text, images, buttons, everything!          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->
+
+<body>
+    <!--
+    ╔══════════════════════════════════════════════════════════════════════════╗
+    ║  📚 LESSON 8: SEMANTIC HTML - Meaningful Tags                            ║
+    ╠══════════════════════════════════════════════════════════════════════════╣
+    ║  OLD WAY (bad):  <div class="header">                                    ║
+    ║  NEW WAY (good): <header>                                                ║
+    ║                                                                          ║
+    ║  Semantic elements DESCRIBE their content:                               ║
+    ║  - <header>  = Top section, logo, nav                                    ║
+    ║  - <nav>     = Navigation links                                          ║
+    ║  - <main>    = Main content (only ONE per page!)                         ║
+    ║  - <section> = Thematic grouping of content                              ║
+    ║  - <article> = Self-contained content                                    ║
+    ║  - <aside>   = Sidebar, related content                                  ║
+    ║  - <footer>  = Bottom section, copyright                                  ║
+    ║                                                                          ║
+    ║  WHY USE SEMANTIC HTML?                                                  ║
+    ║  ✅ Screen readers understand your page structure                        ║
+    ║  ✅ Search engines index your content better (SEO)                       ║
+    ║  ✅ Code is easier to read and maintain                                  ║
+    ╚══════════════════════════════════════════════════════════════════════════╝
+    -->
+
+    <!--
+    📚 <header> - The top banner of your page
+    Contains: logo, name, tagline, navigation
+    Not the same as <head>! <head>=metadata, <header>=visible banner
+    -->
+    <header class="hero">
+        <!--
+        📚 LESSON 9: DIVS AND CONTAINERS
+        ================================
+        <div> is a generic container - it has NO meaning by itself.
+        We use it to GROUP elements together for styling.
+        
+        class="container" - We'll use CSS to center and limit width
+        -->
+        <div class="container">
+            <!--
+            📚 LESSON 10: HEADINGS - The Hierarchy
+            ======================================
+            <h1> to <h6> define heading importance:
+            
+            <h1> = Most important (only ONE per page - your name/title)
+            <h2> = Section titles
+            <h3> = Subsections
+            ...and so on
+            
+            ⚠️ RULE: Never skip levels! Don't go h1 → h3
+            ⚠️ RULE: Only ONE <h1> per page!
+            
+            Think of it like a book outline:
+            Chapter 1 (h1)
+              Section 1.1 (h2)
+                Topic 1.1.1 (h3)
+            -->
+            <h1>Sachidananda Swain</h1>
+
+            <!--
+            📚 LESSON 11: PARAGRAPHS <p>
+            ============================
+            <p> defines a paragraph of text.
+            Browsers automatically add space above and below paragraphs.
+            -->
+            <p class="tagline">Creative Web Developer & Designer & Ai Engineer, ML,DL & Data Science</p>
+
+            <!--
+            📚 LESSON 12: NAVIGATION <nav>
+            ==============================
+            <nav> wraps navigation links.
+            Screen readers announce "navigation" to help blind users.
+            -->
+            <nav class="header-nav">
+                <!--
+                📚 LESSON 13: LINKS <a> (Anchor Tags)
+                =====================================
+                <a> creates clickable links.
+                
+                href="#about" = Links to element with id="about" (same page)
+                href="page.html" = Links to another page
+                href="https://..." = Links to external website
+                
+                The # symbol means "jump to this ID on the current page"
+                -->
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#skills">Skills</a>
+                <a href="#hobbies">Hobbies</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!--
+    📚 <main> - THE Main Content
+    ============================
+    Only ONE <main> per page!
+    Contains your primary content (not header/footer)
+    Helps screen readers skip to main content
+    -->
+    <main>
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                    ABOUT SECTION
+        ════════════════════════════════════════════════════════════════════════
+        
+        📚 LESSON 14: SECTIONS AND IDs
+        ==============================
+        <section> groups related content together.
+        
+        id="about" - A UNIQUE identifier for this element
+        - Only ONE element can have each ID
+        - Used for: CSS styling, JavaScript, page anchors
+        - Links can jump here with href="#about"
+        
+        class="section" - Multiple elements can share a class
+        - Used for styling groups of elements the same way
+        -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+
+                <!--
+                📚 LESSON 15: TEXT FORMATTING
+                =============================
+                <strong> = Important text (bold) - has MEANING
+                <b>      = Bold text - just visual, no meaning
+                
+                <em>     = Emphasized text (italic) - has MEANING  
+                <i>      = Italic text - just visual, no meaning
+                
+                PREFER <strong> and <em> for accessibility!
+                -->
+                <p class="about-text">
+                    I'm a 19-year-old <strong>AI/ML enthusiast and aspiring Web Developer</strong> currently
+                    pursuing my 2nd year (4th semester) at <em>Sardar Vallabhbhai National Institute of Technology
+                        (SVNIT)</em>.
+                    My journey in tech started with Machine Learning and Deep Learning, and now I'm expanding into
+                    frontend web development.
+                </p>
+                <p class="about-text">
+                    I believe in consistent learning and hands-on practice. Currently mastering HTML, CSS, and
+                    JavaScript to add web development to my skillset alongside my expertise in Data Science and AI.
+                </p>
+            </div>
+        </section>
+
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                  EXPERIENCE SECTION
+        ════════════════════════════════════════════════════════════════════════
+        -->
+        <section id="experience" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+
+                <!--
+                📚 LESSON 16: ARTICLE ELEMENT
+                =============================
+                <article> = Self-contained content that could stand alone
+                Examples: blog posts, news articles, job listings, comments
+                Each job experience is its own "article"
+                -->
+                <article class="experience-item">
+                    <div class="experience-header">
+                        <!--
+                        📚 <h3> for job titles (subsection under h2)
+                        Maintains proper heading hierarchy!
+                        -->
+                        <h3>Machine Learning & Deep Learning</h3>
+                        <!--
+                        📚 LESSON 17: SPAN ELEMENT
+                        ==========================
+                        <span> is an INLINE container (doesn't break line)
+                        <div> is a BLOCK container (takes full width, breaks line)
+                        
+                        Use <span> to style a piece of text within a paragraph
+                        -->
+                        <span class="experience-date">2024 - Present</span>
+                    </div>
+                    <p class="experience-company">Self-Learning & Academic Projects</p>
+                    <!--
+                    📚 LESSON 18: UNORDERED LISTS <ul>
+                    ==================================
+                    <ul> = Unordered List (bullet points)
+                    <li> = List Item (each bullet)
+                    
+                    <ol> = Ordered List (1, 2, 3...)
+                    
+                    Lists are PERFECT for:
+                    - Navigation menus
+                    - Feature lists
+                    - Job responsibilities
+                    -->
+                    <ul class="experience-list">
+                        <li>Built and trained ML models for classification and regression tasks</li>
+                        <li>Implemented Deep Learning architectures using TensorFlow/PyTorch</li>
+                        <li>Applied Data Science techniques for data analysis and visualization</li>
+                    </ul>
+                </article>
+
+                <article class="experience-item">
+                    <div class="experience-header">
+                        <h3>Data Science</h3>
+                        <span class="experience-date">2024 - Present</span>
+                    </div>
+                    <p class="experience-company">Academic & Personal Projects</p>
+                    <ul class="experience-list">
+                        <li>Performed exploratory data analysis on various datasets</li>
+                        <li>Created visualizations and insights using Python libraries</li>
+                        <li>Worked with Pandas, NumPy, Matplotlib, and Seaborn</li>
+                    </ul>
+                </article>
+
+                <article class="experience-item">
+                    <div class="experience-header">
+                        <h3>Web Development (Learning)</h3>
+                        <span class="experience-date">2026 - Present</span>
+                    </div>
+                    <p class="experience-company">Frontend Development Journey</p>
+                    <ul class="experience-list">
+                        <li>Learning HTML5 and CSS3 for building responsive websites</li>
+                        <li>Practicing JavaScript for interactive web applications</li>
+                        <li>Building projects to strengthen frontend fundamentals</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                    SKILLS SECTION
+        ════════════════════════════════════════════════════════════════════════
+        -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+
+                <!--
+                📚 This div groups all skill categories together
+                We'll use CSS Flexbox to create a nice grid layout
+                -->
+                <div class="skills-grid">
+                    <!--
+                    Each skill category is a "card"
+                    Divs are perfect for creating visual card components
+                    -->
+                    <div class="skill-category">
+                        <h3>AI/ML & Data Science</h3>
+                        <ul class="skill-list">
+                            <li>Machine Learning</li>
+                            <li>Deep Learning</li>
+                            <li>Data Science</li>
+                            <li>TensorFlow/PyTorch</li>
+                            <li>Data Visualization</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <ul class="skill-list">
+                            <li>Python</li>
+                            <li>JavaScript</li>
+                            <li>C</li>
+                            <li>HTML & CSS (Learning)</li>
+                            <li>SQL</li>
+                        </ul>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>Tools & Libraries</h3>
+                        <ul class="skill-list">
+                            <li>Pandas & NumPy</li>
+                            <li>Matplotlib & Seaborn</li>
+                            <li>Git & GitHub</li>
+                            <li>VS Code</li>
+                            <li>Jupyter Notebook</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                   EDUCATION SECTION
+        ════════════════════════════════════════════════════════════════════════
+        -->
+        <section id="education" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+
+                <article class="education-item">
+                    <h3>B.Tech + M.Tech (Integrated) in Artificial Intelligence</h3>
+                    <p class="education-school">Sardar Vallabhbhai National Institute of Technology (SVNIT), Surat</p>
+                    <span class="education-date">2024 - 2029</span>
+                </article>
+
+                <article class="education-item">
+                    <h3>Currently: 2nd Year, 4th Semester</h3>
+                    <p class="education-school">Department of Artificial Intelligence</p>
+                    <span class="education-date">Age: 19</span>
+                </article>
+            </div>
+        </section>
+
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                   CONTACT SECTION
+        ════════════════════════════════════════════════════════════════════════
+        -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="contact-intro">
+                    I'm always interested in hearing about new projects and opportunities.
+                </p>
+
+                <!--
+                📚 LESSON 19: EMAIL AND PHONE LINKS
+                ===================================
+                href="mailto:..." = Opens email app
+                href="tel:..."    = Opens phone dialer (great for mobile!)
+                
+                These are special link types browsers understand
+                -->
+                <div class="contact-links">
+                    <a href="mailto:sachidananda0907@gmail.com" class="contact-link">
+                        <!--
+                        📚 This is an SVG icon (Scalable Vector Graphics)
+                        SVGs are images made of code - they scale perfectly!
+                        Don't worry about the code inside, just know it draws an icon
+                        -->
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        sachidananda0907@gmail.com
+                    </a>
+
+                    <a href="tel:+916372929790" class="contact-link">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        +91 6371917890
+                    </a>
+
+                    <!--
+                    📚 LESSON 20: EXTERNAL LINKS
+                    ============================
+                    target="_blank" = Opens in new tab
+                    rel="noopener noreferrer" = Security feature!
+                      - Prevents the new page from accessing your page
+                      - ALWAYS add this with target="_blank"!
+                    -->
+                    <a href="https://www.linkedin.com/in/sachidananda-swain-svnit-9593b9326/" class="contact-link"
+                        target="_blank" rel="noopener noreferrer">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                            </path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        LinkedIn Profile
+                    </a>
+
+                    <a href="https://github.com/Sachidanandabunu09" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                            </path>
+                        </svg>
+                        GitHub Profile
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        ════════════════════════════════════════════════════════════════════════
+                                   HOBBIES SECTION
+        ════════════════════════════════════════════════════════════════════════
+        -->
+        <section id="hobbies" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title">Hobbies & Interests</h2>
+                <p class="about-text">
+                    Beyond coding, I'm passionate about <strong>Art</strong> and <strong>Photography</strong>.
+                    These creative outlets help me bring a unique perspective to my technical work
+                    and maintain a balanced lifestyle.
+                </p>
+
+                <div class="hobbies-grid">
+                    <div class="hobby-card">
+                        <h3>🎨 Art</h3>
+                        <p>Exploring creativity through various art forms and visual expressions.</p>
+                    </div>
+                    <div class="hobby-card">
+                        <h3>📷 Photography</h3>
+                        <p>Capturing moments and telling stories through the lens.</p>
+                    </div>
+                </div>
+
+                <div class="contact-links" style="margin-top: 2rem;">
+                    <a href="https://instagram.com/_sachidananda_09_" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        @_sachidananda_09_ (Main)
+                    </a>
+                    <a href="https://instagram.com/shutter_sketch09" class="contact-link" target="_blank"
+                        rel="noopener noreferrer">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                        @shutter_sketch09 (Art & Photography)
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--
+    📚 <footer> - The Bottom of Your Page
+    =====================================
+    Contains: copyright, additional links, legal info
+    Appears at the bottom of every page
+    -->
+    <footer class="footer">
+        <div class="container">
+            <!--
+            📚 The &copy; is an HTML ENTITY
+            ==============================
+            Entities display special characters:
+            - &copy;  = © (copyright)
+            - &amp;   = & (ampersand)
+            - &lt;    = < (less than)
+            - &gt;    = > (greater than)
+            - &nbsp;  = non-breaking space
+            -->
+            <p>&copy; 2026 Sachidananda Swain. Built with HTML & CSS.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
+<!--
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         🎉 CONGRATULATIONS! 🎉                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  You've learned the core concepts of HTML:                                   ║
+║                                                                              ║
+║  ✅ DOCTYPE and document structure                                           ║
+║  ✅ Head section (meta, title, links)                                        ║
+║  ✅ Semantic elements (header, main, section, footer)                        ║
+║  ✅ Headings hierarchy (h1-h6)                                               ║
+║  ✅ Text elements (p, strong, em, span)                                      ║
+║  ✅ Links (internal, external, email, phone)                                 ║
+║  ✅ Lists (ul, ol, li)                                                       ║
+║  ✅ IDs and Classes                                                          ║
+║  ✅ Divs for grouping                                                        ║
+║  ✅ HTML entities                                                            ║
+║                                                                              ║
+║  Now open styles.css to learn CSS! 🎨                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+-->

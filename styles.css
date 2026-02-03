@@ -1,0 +1,996 @@
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                     🎨 CSS LEARNING STYLESHEET                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  This file teaches you CSS by styling a real resume website.                ║
+║  Every property is explained! Read the comments to learn.                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 1: CSS VARIABLES (Custom Properties)                              ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Variables let you define values ONCE and reuse them everywhere!            ║
+║                                                                              ║
+║  Syntax: --variable-name: value;                                             ║
+║  Usage:  property: var(--variable-name);                                     ║
+║                                                                              ║
+║  WHY USE VARIABLES?                                                          ║
+║  ✅ Change colors everywhere by editing ONE line                             ║
+║  ✅ Creates consistent design                                                ║
+║  ✅ Makes themes/dark mode easy                                              ║
+║                                                                              ║
+║  :root means these variables work EVERYWHERE in your CSS                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+:root {
+    /* COLOR PALETTE - Minimalist with just 4 colors! */
+    --color-primary: #1a1a2e;
+    /* Deep navy - main text */
+    --color-secondary: #16213e;
+    /* Slightly lighter navy - accents */
+    --color-accent: #e94560;
+    /* Coral red - highlights, links */
+    --color-light: #f8f9fa;
+    /* Off-white - backgrounds */
+    --color-white: #ffffff;
+    /* Pure white */
+    --color-gray: #6c757d;
+    /* Muted gray - secondary text */
+
+    /* 
+    📚 TYPOGRAPHY SCALE
+    ===================
+    Having consistent font sizes creates visual harmony.
+    These use "rem" units (more on that below!)
+    */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-size-xs: 0.75rem;
+    /* 12px - tiny text */
+    --font-size-sm: 0.875rem;
+    /* 14px - small text */
+    --font-size-base: 1rem;
+    /* 16px - body text (browser default) */
+    --font-size-lg: 1.125rem;
+    /* 18px - slightly larger */
+    --font-size-xl: 1.25rem;
+    /* 20px - emphasized text */
+    --font-size-2xl: 1.5rem;
+    /* 24px - small headings */
+    --font-size-3xl: 2rem;
+    /* 32px - section titles */
+    --font-size-4xl: 2.5rem;
+    /* 40px - main heading */
+    --font-size-5xl: 3rem;
+    /* 48px - hero text */
+
+    /*
+    📚 SPACING SCALE
+    ================
+    Consistent spacing creates rhythm and balance.
+    Using multiples of 4px (0.25rem) is a common system.
+    */
+    --spacing-xs: 0.25rem;
+    /* 4px */
+    --spacing-sm: 0.5rem;
+    /* 8px */
+    --spacing-md: 1rem;
+    /* 16px */
+    --spacing-lg: 1.5rem;
+    /* 24px */
+    --spacing-xl: 2rem;
+    /* 32px */
+    --spacing-2xl: 3rem;
+    /* 48px */
+    --spacing-3xl: 4rem;
+    /* 64px */
+
+    /*
+    📚 OTHER DESIGN TOKENS
+    */
+    --border-radius: 50px;
+    /* Rounded corners */
+    --transition-speed: 0.5s;
+    /* Animation duration */
+    --max-width: 1000px;
+    /* Content max width for readability */
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 2: CSS RESET / NORMALIZATION                                      ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Browsers have DEFAULT styles that differ between browsers!                  ║
+║  A "reset" removes these defaults so YOUR styles are consistent.             ║
+║                                                                              ║
+║  The * selector means "EVERY element"                                        ║
+║  This is called the UNIVERSAL SELECTOR                                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+*,
+*::before,
+/* Pseudo-element: adds content BEFORE element */
+*::after {
+    /* Pseudo-element: adds content AFTER element */
+    /*
+    📚 BOX-SIZING: THE MOST IMPORTANT RULE!
+    =======================================
+    border-box means: width/height INCLUDES padding + border
+    
+    WITHOUT border-box (default "content-box"):
+      width: 100px + padding: 20px + border: 2px = 122px total! 😱
+    
+    WITH border-box:
+      width: 100px = 100px total (padding/border fit inside) ✅
+    
+    ALWAYS use this. It makes layouts SO much easier!
+    */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+📚 LESSON 3: THE BODY ELEMENT STYLES
+====================================
+Set your base/default styles on the body.
+All elements inside will INHERIT these styles.
+*/
+body {
+    /*
+    📚 FONT FAMILY
+    ==============
+    font-family sets the typeface.
+    We list FALLBACKS in case the first font doesn't load:
+    1. 'Inter' - Our Google Font
+    2. -apple-system - Apple's system font (Mac/iOS)
+    3. BlinkMacSystemFont - Chrome on Mac
+    4. sans-serif - Any sans-serif font (last resort)
+    */
+    font-family: var(--font-family);
+
+    /*
+    📚 FONT SIZE
+    ============
+    Sets the base font size for the page.
+    1rem = 16px (browser default)
+    Using rem for font sizes is BEST for accessibility!
+    */
+    font-size: var(--font-size-base);
+
+    /*
+    📚 LINE HEIGHT
+    ==============
+    Space between lines of text.
+    1.6 = 160% of font size (very readable)
+    Too tight (1.0) = hard to read
+    Too loose (2.5) = text feels disconnected
+    */
+    line-height: 1.8;
+
+    /* Text and background colors */
+    color: var(--color-primary);
+    background-color: var(--color-white);
+
+    /*
+    📚 FONT SMOOTHING (Advanced)
+    ============================
+    Makes fonts look smoother on Mac.
+    -webkit prefix = Safari/Chrome specific
+    */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 4: ELEMENT TYPE SELECTORS                                         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  The simplest selector - just the tag name!                                  ║
+║  h1 { } applies to ALL <h1> elements                                         ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+/* Remove default bullet points from all lists */
+ul {
+    list-style: disc;
+    /* none = no bullets, disc = •, circle = ○, square = ■ */
+}
+
+/* Make all images responsive by default */
+img {
+    max-width: 100%;
+    /* Never wider than container */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: ruby-base-container;
+    /* Removes weird bottom spacing */
+}
+
+/*
+📚 LESSON 5: LINK STYLES AND STATES
+===================================
+Links have different STATES that you can style:
+- a           = default state
+- a:hover     = mouse is over the link
+- a:focus     = keyboard focused (accessibility!)
+- a:active    = being clicked
+- a:visited   = already been visited
+
+The : is called a PSEUDO-CLASS selector
+*/
+a {
+    color: var(--color-accent);
+    /*
+    text-decoration controls underlines:
+    - none = no underline
+    - underline = underlined
+    - line-through = strikethrough
+    */
+    text-decoration: none;
+
+    /*
+    📚 TRANSITIONS - Smooth Animations!
+    ====================================
+    transition: property duration timing-function;
+    
+    - property: what to animate (color, all, etc.)
+    - duration: how long (0.3s = 300 milliseconds)
+    - timing-function: easing (ease, linear, ease-in-out)
+    
+    This creates smooth color changes on hover!
+    */
+    transition: color var(--transition-speed) ease-out;
+}
+
+/* 
+📚 HOVER STATE
+Mouse is over the link
+*/
+a:hover {
+    color: var(--color-primary);
+}
+
+/*
+📚 FOCUS STATE - CRITICAL FOR ACCESSIBILITY!
+Users who navigate with keyboard need to see what's focused.
+Never remove focus styles without adding alternatives!
+*/
+a:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    /* Space between element and outline */
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 6: CLASS SELECTORS                                                ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Classes are REUSABLE styles applied with class="classname"                  ║
+║  In CSS, prefix with a dot: .classname { }                                   ║
+║                                                                              ║
+║  ID selectors use #: #unique-id { }                                          ║
+║  IDs should only appear ONCE per page!                                       ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+/*
+📚 CONTAINER CLASS
+==================
+A container centers content and limits max width.
+This improves readability - super wide text is hard to read!
+*/
+.container {
+    width: 100%;
+    /* Full width of parent */
+    max-width: var(--max-width);
+    /* But never wider than 800px */
+    margin: 0 auto;
+    /* Center horizontally (auto = equal margins) */
+    padding: 0 var(--spacing-lg);
+    /* Side padding for mobile */
+
+    /*
+    📚 MARGIN AND PADDING SHORTHAND
+    ===============================
+    4 values: top right bottom left (clockwise from top)
+    3 values: top left-right bottom
+    2 values: top-bottom left-right (like "margin: 0 auto")
+    1 value:  all sides
+    
+    "margin: 0 auto" = 0 top/bottom, auto left/right (centers!)
+    */
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 7: THE HERO/HEADER SECTION                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.hero {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    /*
+    📚 LINEAR GRADIENTS
+    ===================
+    Creates a smooth color transition.
+    linear-gradient(direction, color1, color2, ...)
+    
+    Directions:
+    - to right, to bottom, etc.
+    - Angles: 45deg, 135deg, etc.
+    
+    135deg = diagonal from top-left to bottom-right
+    */
+
+    color: var(--color-white);
+    padding: var(--spacing-3xl) 0;
+    /* Top and bottom padding */
+    text-align: center;
+    /* Centers all inline/text content */
+}
+
+/* 
+📚 DESCENDANT SELECTOR
+======================
+".hero h1" means: <h1> elements INSIDE .hero
+This is more specific than just "h1"
+*/
+.hero h1 {
+    font-size: var(--font-size-5xl);
+    font-weight: 700;
+    /* Boldness: 400=normal, 700=bold */
+    margin-bottom: var(--spacing-sm);
+
+    /*
+    📚 LETTER SPACING
+    =================
+    Space between letters.
+    Negative = tighter, Positive = looser
+    Subtle spacing (-0.02em) makes big text feel more refined
+    */
+    letter-spacing: -0.02em;
+}
+
+.tagline {
+    font-size: var(--font-size-xl);
+    opacity: 0.9;
+    /* 0=invisible, 1=fully visible */
+    font-weight: 400;
+    margin-bottom: var(--spacing-xl);
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 8: FLEXBOX - The Layout Revolution!                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Flexbox is a 1-dimensional layout system (rows OR columns).                 ║
+║  It makes centering and spacing SO much easier!                              ║
+║                                                                              ║
+║  PARENT (Flex Container) gets: display: flex;                                ║
+║  CHILDREN (Flex Items) automatically arrange themselves!                     ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.header-nav {
+    /*
+    display: flex makes this a FLEX CONTAINER
+    Children become FLEX ITEMS and line up in a row
+    */
+    display: flex;
+
+    /*
+    📚 JUSTIFY-CONTENT (Main Axis - horizontal for rows)
+    =====================================================
+    - flex-start: items at start |||____
+    - flex-end: items at end ____|||
+    - center: items in center __|||__
+    - space-between: first & last at edges |__|__|
+    - space-around: equal space around each item _|_|_|_
+    - space-evenly: perfectly equal spaces _|_|_|_
+    */
+    justify-content: center;
+
+    /*
+    📚 GAP - Space Between Flex Items
+    =================================
+    gap: 20px creates 20px space between items
+    Much cleaner than margins on each item!
+    */
+    gap: var(--spacing-lg);
+
+    /*
+    📚 FLEX-WRAP
+    ============
+    - nowrap (default): items shrink to fit one line
+    - wrap: items wrap to next line if needed
+    */
+    flex-wrap: wrap;
+}
+
+/* Style the nav links (children of .header-nav) */
+.header-nav a {
+    color: var(--color-white);
+    opacity: 0.5;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+
+    /*
+    📚 TEXT-TRANSFORM
+    =================
+    - uppercase: MAKES ALL CAPS
+    - lowercase: makes all lowercase
+    - capitalize: Capitalizes First Letter
+    */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    /* Space out uppercase letters */
+    transition: opacity var(--transition-speed) ease-in;
+}
+
+.header-nav a:hover {
+    opacity: 1;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 9: SECTION STYLES                                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.section {
+    padding: var(--spacing-3xl) 0;
+}
+
+/* 
+📚 MULTIPLE CLASSES
+===================
+An element can have multiple classes: class="section section-alt"
+.section-alt adds an alternate background color
+*/
+.section-alt {
+    background-color: var(--color-light);
+}
+
+.section-title {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+
+    /*
+    📚 POSITION: RELATIVE
+    =====================
+    Makes the element a "positioning context"
+    Allows absolute positioning of children
+    Also enables using top/left/right/bottom
+    Here we use it so ::after pseudo-element positions relative to this
+    */
+    position: relative;
+    display: inline-block;
+    /* Shrinks to content width */
+    width: 100%;
+}
+
+/*
+📚 PSEUDO-ELEMENTS: ::after and ::before
+=========================================
+Create "fake" elements via CSS without adding HTML!
+
+::before = inserts content BEFORE the element's content
+::after = inserts content AFTER the element's content
+
+MUST have "content" property (even if empty string)!
+*/
+.section-title::after {
+    content: '';
+    /* Required! Empty string = no text */
+    display: block;
+    width: 1000px;
+    height: 2px;
+    background-color: var(--color-accent);
+    margin: var(--spacing-md) auto 0;
+    /* Centers the line */
+    border-radius: 9px;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 10: ABOUT SECTION                                                 ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.about-text {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    /* Extra line height for readability */
+    color: var(--color-gray);
+    max-width: 650px;
+    margin: 0 auto var(--spacing-md);
+    text-align: center;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 11: EXPERIENCE SECTION                                            ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.experience-item {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+
+    /*
+    📚 BORDERS
+    ==========
+    border: width style color;
+    
+    Styles: solid, dashed, dotted, double, none
+    
+    You can also set individual sides:
+    border-bottom, border-top, border-left, border-right
+    */
+    border-bottom: 1px solid #ea0933;
+}
+
+/*
+📚 SPECIAL PSEUDO-CLASS: :last-child
+====================================
+Selects the LAST element among siblings.
+Here we remove the border from the last experience item.
+
+Other useful pseudo-classes:
+- :first-child
+- :nth-child(2) - 2nd element
+- :nth-child(odd) - odd numbered elements
+- :nth-child(even) - even numbered elements
+*/
+.experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.experience-header {
+    display: flex;
+    /*
+    📚 ALIGN-ITEMS (Cross Axis - vertical for rows)
+    ================================================
+    - stretch: items stretch to fill container height
+    - flex-start: items at top
+    - flex-end: items at bottom
+    - center: items centered vertically
+    - baseline: items aligned by text baseline
+    */
+    justify-content: space-around;
+    /* Push items to opposite ends */
+    align-items: center;
+    /* Center vertically */
+    flex-wrap: nowrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.experience-header h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.experience-date {
+    color: var(--color-accent);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.experience-company {
+    color: var(--color-gray);
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+}
+
+.experience-list {
+    color: var(--color-gray);
+}
+
+.experience-list li {
+    position: relative;
+    padding-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Custom bullet point using ::before pseudo-element */
+.experience-list li::before {
+    content: '→';
+    /* Arrow as bullet */
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 12: CSS GRID - 2D Layout Power!                                   ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Grid is a 2-dimensional layout system (rows AND columns).                   ║
+║  Perfect for card layouts, galleries, and page structures!                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.skills-grid {
+    /* 
+    display: grid makes this a GRID CONTAINER
+    Children become GRID ITEMS
+    */
+    display: grid;
+
+    /*
+    📚 GRID-TEMPLATE-COLUMNS
+    ========================
+    Defines column sizes!
+    
+    repeat(3, 1fr) = 3 equal columns
+    - repeat(count, size) repeats a pattern
+    - 1fr = 1 "fraction" of available space
+    - If all columns are 1fr, they're equal width
+    
+    Other options:
+    - repeat(3, 200px) = 3 columns, each 200px
+    - 1fr 2fr 1fr = 3 columns, middle is twice as wide
+    - repeat(auto-fit, minmax(250px, 1fr)) = responsive magic!
+    */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    /*
+    📚 AUTO-FIT + MINMAX = Responsive Without Media Queries!
+    ========================================================
+    - auto-fit: fit as many columns as possible
+    - minmax(250px, 1fr): each column is at least 250px, at most 1fr
+    
+    Result: columns automatically wrap on smaller screens!
+    */
+
+    gap: var(--spacing-xl);
+    /* Gap works for Grid too! */
+}
+
+.skill-category {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+
+    /*
+    📚 BOX-SHADOW - Adding Depth
+    ============================
+    box-shadow: x-offset y-offset blur spread color;
+    
+    - x-offset: horizontal (positive = right)
+    - y-offset: vertical (positive = down)
+    - blur: how blurry the shadow is
+    - spread: how much the shadow grows
+    - color: shadow color (often with transparency)
+    
+    rgba(0,0,0,0.08) = black at 8% opacity (very subtle!)
+    */
+    box-shadow: 14px 10px 100px rgba(147, 20, 20, 0.219);
+
+    /*
+    📚 TRANSITION ON HOVER EFFECTS
+    ==============================
+    Add transition to the default state, not the hover state!
+    This way it animates both when hovering AND when leaving
+    */
+    transition: transform var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease;
+}
+
+/*
+📚 TRANSFORM - Moving, Scaling, Rotating
+=========================================
+transform doesn't affect layout flow - elements don't push others!
+
+Common transforms:
+- translateY(-5px): move up 5px
+- translateX(10px): move right 10px
+- scale(1.1): grow to 110%
+- rotate(45deg): rotate 45 degrees
+*/
+.skill-category:hover {
+    transform: translateY(-5px);
+    /* Float up on hover */
+    box-shadow: 4px 9px 40px rgba(0, 0, 0, 0.12);
+    /* Deeper shadow */
+}
+
+.skill-category h3 {
+    color: var(--color-accent);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-md);
+    font-weight: 600;
+}
+
+.skill-list li {
+    padding: var(--spacing-sm) 0;
+    color: var(--color-gray);
+    border-bottom: 1px solid var(--color-light);
+}
+
+.skill-list li:last-child {
+    border-bottom: none;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 13: EDUCATION SECTION                                             ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.education-item {
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+}
+
+.education-item h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.education-school {
+    color: var(--color-gray);
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+}
+
+.education-date {
+    color: var(--color-accent);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 14: CONTACT SECTION                                               ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.contact-intro {
+    text-align: center;
+    color: var(--color-gray);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.contact-link {
+    display: inline-flex;
+    /* Inline-flex = flex but inline element */
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--color-light);
+    border-radius: var(--border-radius);
+    color: var(--color-primary);
+    font-weight: 500;
+    transition: background-color var(--transition-speed) ease,
+        color var(--transition-speed) ease,
+        transform var(--transition-speed) ease;
+}
+
+.contact-link:hover {
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+/* Style the SVG icons */
+.icon {
+    width: 20px;
+    height: 20px;
+    /*
+    📚 flex-shrink: 0
+    =================
+    Prevents the icon from shrinking when space is tight.
+    Flex items can shrink by default, this stops that.
+    */
+    flex-shrink: 0;
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 15: FOOTER                                                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.footer {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.footer p {
+    opacity: 0.8;
+    font-size: var(--font-size-sm);
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 HOBBIES SECTION STYLES                                                   ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+.hobby-card {
+    background: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 20px rgba(151, 17, 17, 0.193);
+    text-align: center;
+    transition: transform var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease;
+}
+
+.hobby-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(102, 10, 10, 0.484);
+}
+
+.hobby-card h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.hobby-card p {
+    color: var(--color-gray);
+    font-size: var(--font-size-base);
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 16: MEDIA QUERIES - Responsive Design!                            ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  Media queries let you apply CSS based on screen size!                       ║
+║                                                                              ║
+║  @media (max-width: 768px) means:                                            ║
+║  "Apply these styles when screen is 768px or SMALLER"                        ║
+║                                                                              ║
+║  @media (min-width: 768px) means:                                            ║
+║  "Apply these styles when screen is 768px or LARGER"                         ║
+║                                                                              ║
+║  MOBILE-FIRST approach (recommended):                                        ║
+║  - Write mobile styles as default                                            ║
+║  - Use min-width queries to add desktop styles                               ║
+║                                                                              ║
+║  DESKTOP-FIRST approach:                                                     ║
+║  - Write desktop styles as default                                           ║
+║  - Use max-width queries to add mobile styles                                ║
+║                                                                              ║
+║  Common Breakpoints:                                                         ║
+║  - 480px: Small phones                                                       ║
+║  - 768px: Tablets                                                            ║
+║  - 1024px: Laptops                                                           ║
+║  - 1200px: Desktops                                                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+
+/* Tablet and smaller (768px and below) */
+@media (max-width: 768px) {
+
+    /*
+    📚 ADJUSTING TYPOGRAPHY FOR MOBILE
+    ==================================
+    Large headings need to be smaller on mobile!
+    */
+    .hero h1 {
+        font-size: var(--font-size-3xl);
+        /* 32px instead of 48px */
+    }
+
+    .tagline {
+        font-size: var(--font-size-lg);
+    }
+
+    .section {
+        padding: var(--spacing-2xl) 0;
+        /* Less vertical padding */
+    }
+
+    .section-title {
+        font-size: var(--font-size-2xl);
+    }
+
+    /*
+    📚 STACK FLEX ITEMS VERTICALLY ON MOBILE
+    ========================================
+    flex-direction: column makes items stack vertically
+    (default is row = horizontal)
+    */
+    .experience-header {
+        flex-direction: column;
+        align-items: flex-start;
+        /* Left align */
+    }
+}
+
+/* Small phones (480px and below) */
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: var(--font-size-2xl);
+        /* Even smaller */
+    }
+
+    .header-nav {
+        gap: var(--spacing-md);
+    }
+
+    .header-nav a {
+        font-size: var(--font-size-xs);
+    }
+
+    .contact-link {
+        width: 100%;
+        /* Full width buttons */
+        justify-content: center;
+    }
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║  📚 LESSON 17: PRINT STYLES (Bonus!)                                         ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  @media print applies styles when the page is printed!                       ║
+║  Great for resumes - people might print them!                                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+@media print {
+
+    /* Remove backgrounds to save ink */
+    .hero {
+        background: none;
+        color: var(--color-primary);
+    }
+
+    /* Show full URLs for links when printed */
+    a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: var(--font-size-xs);
+    }
+
+    /* Remove hover effects since you can't hover on paper! */
+    .skill-category:hover,
+    .contact-link:hover {
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+/*
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                         🎉 CONGRATULATIONS! 🎉                               ║
+╠══════════════════════════════════════════════════════════════════════════════╣
+║  You've learned the core concepts of CSS:                                    ║
+║                                                                              ║
+║  ✅ CSS Variables (Custom Properties)                                        ║
+║  ✅ Selectors (element, class, ID, pseudo-classes, pseudo-elements)          ║
+║  ✅ Box Model (margin, padding, border, box-sizing)                          ║
+║  ✅ Typography (font-family, size, weight, line-height, spacing)             ║
+║  ✅ Colors (hex, rgba, variables)                                            ║
+║  ✅ Layout with Flexbox (display, justify, align, gap)                       ║
+║  ✅ Layout with Grid (grid-template-columns, auto-fit, minmax)               ║
+║  ✅ Transitions and Transforms (hover effects, animations)                   ║
+║  ✅ Box Shadow (adding depth)                                                ║
+║  ✅ Responsive Design (media queries)                                        ║
+║  ✅ Print Styles                                                             ║
+║                                                                              ║
+║  Open the LEARN.md file for a comprehensive reference guide! 📖             ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+*/
