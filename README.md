@@ -4,7 +4,7 @@ A professional resume website built with HTML & CSS as a learning project.
 
 ## 🌐 Live Demo
 
-View the live site: [Resume](https://YOUR_USERNAME.github.io/resume-learning/)
+View the live site: [Resume](https://Sachidanandabunu09.github.io/resume-learning/)
 
 ## ✨ Features
 
